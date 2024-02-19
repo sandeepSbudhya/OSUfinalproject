@@ -4,13 +4,13 @@ package com.springbootkafka.producer.types;
  * An example of what a performance message could look like
  */
 public class PerformanceMessage {
-    private float accuracy, fmeasure, precission, recall;
+    private float accuracy, fmeasure, precision, recall;
     private int userId;
     
-    public PerformanceMessage(float accuracy, float fmeasure, float precission, float recall, int userId) {
+    public PerformanceMessage(float accuracy, float fmeasure, float precision, float recall, int userId) {
         this.accuracy = accuracy;
         this.fmeasure = fmeasure;
-        this.precission = precission;
+        this.precision = precision;
         this.recall = recall;
         this.userId = userId;
     }
@@ -23,8 +23,8 @@ public class PerformanceMessage {
         this.fmeasure = fmeasure;
     }
 
-    public void setPrecission(float precission) {
-        this.precission = precission;
+    public void setPrecision(float precision) {
+        this.precision = precision;
     }
 
     public void setRecall(float recall) {
@@ -43,8 +43,8 @@ public class PerformanceMessage {
         return this.fmeasure;
     }
 
-    public float getPrecission() {
-        return this.precission;
+    public float getPrecision() {
+        return this.precision;
     }
 
     public float getRecall() {
