@@ -1,7 +1,9 @@
 package com.springbootkafka.producer.controllers;
 
-import com.springbootkafka.producer.services.ProduceMessage;
-import com.springbootkafka.producer.types.ProduceToTopic;
+import com.springbootkafka.producer.services.ProducePerformanceMessage;
+import com.springbootkafka.producer.services.ProduceProgressMessage;
+import com.springbootkafka.producer.types.PerformanceMessage;
+import com.springbootkafka.producer.types.ProgressMessage;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,31 +12,49 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 
 /**
  * Controller to process producer message pushes
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/producemessage")
 public class ProduceMessageController {
 
     @Autowired
-    private ProduceMessage produceMessage;
+    private ProducePerformanceMessage producePerformanceMessage;
+
+    @Autowired
+    private ProduceProgressMessage produceProgressMessage;
 
     /**
      * 
-     * @param produceToTopic convert JSON body to java object
+     * @param performanceMessage convert JSON body to java object
      * @return
      */
-    @PostMapping("/producer")
-    public ResponseEntity<String> produceMessage(@RequestBody ProduceToTopic produceToTopic) {
+    @PostMapping("/performance")
+    public ResponseEntity<String> sendPerformanceMessage(@RequestBody PerformanceMessage performanceMessage) {
         try{
-            produceMessage.sendMessageToTopic(produceToTopic.getTopic(), produceToTopic.getMessage());
-            return ResponseEntity.ok("successfully sent message: "+produceToTopic.getMessage());
+            producePerformanceMessage.sendToPerformanceMessagesTopic(performanceMessage);
+            return ResponseEntity.ok("successfully sent message: "+performanceMessage.toString());
         } catch (Exception e) {
-            System.out.println("Could not send message: "+produceToTopic.getMessage());
+            System.out.println("Could not send message: "+performanceMessage.toString());
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    /**
+     * 
+     * @param progressMessage convert JSON body to java object
+     * @return
+     */
+    @PostMapping("/progress")
+    public ResponseEntity<String> sendProgressMessage(@RequestBody ProgressMessage progressMessage) {
+        try{
+            produceProgressMessage.sendToProgressMessagesTopic(progressMessage);
+            return ResponseEntity.ok("successfully sent message: "+progressMessage.toString());
+        } catch (Exception e) {
+            System.out.println("Could not send message: "+progressMessage.toString());
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

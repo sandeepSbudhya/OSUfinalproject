@@ -1,6 +1,6 @@
 package com.springbootkafka.producer.types;
 
-public class CreateTopicMessage {
+public class CreateTopic {
     String topic;
 
     public void setTopic(String topic) {

@@ -9,12 +9,19 @@ CREATE TABLE IF NOT EXISTS end_users (
 CREATE TABLE IF NOT EXISTS progress_messages (
     progress_message_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES end_users(user_id),
-    message_text varchar(250) NOT NULL
+    epochs_completed BIGINT,
+    total_epochs BIGINT,
+    number_of_days INT,
+    number_of_minutes INT,
+    number_of_hours INT
 );
 
 -- Creation of performance messages table
 CREATE TABLE IF NOT EXISTS performance_messages (
     performance_message_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES end_users(user_id),
-    message_text varchar(250) NOT NULL
+    accuracy NUMERIC(1,3),
+    precission NUMERIC(1,3),
+    recall NUMERIC(1,3),
+    fmeasure NUMERIC(1,3)
 );

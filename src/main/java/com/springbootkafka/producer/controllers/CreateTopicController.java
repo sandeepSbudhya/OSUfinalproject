@@ -3,7 +3,7 @@ package com.springbootkafka.producer.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootkafka.producer.services.CreateNewTopic;
-import com.springbootkafka.producer.types.CreateTopicMessage;
+import com.springbootkafka.producer.types.CreateTopic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class CreateTopicController {
      * @throws Exception
      */
     @PostMapping("/create-topic")
-    public ResponseEntity<String> postMethodName(@RequestBody CreateTopicMessage createTopicMessage) throws InterruptedException, Exception{
+    public ResponseEntity<String> postMethodName(@RequestBody CreateTopic createTopicMessage) throws InterruptedException, Exception{
         try{
             createNewTopic.createTopic(createTopicMessage.getTopic());
             return ResponseEntity.ok("successfully created topic: "+createTopicMessage.getTopic());
