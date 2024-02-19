@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS progress_messages (
 CREATE TABLE IF NOT EXISTS performance_messages (
     performance_message_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES end_users(user_id),
-    accuracy NUMERIC(1,3),
-    precission NUMERIC(1,3),
-    recall NUMERIC(1,3),
-    fmeasure NUMERIC(1,3)
+    accuracy NUMERIC(5,3),
+    precission NUMERIC(5,3),
+    recall NUMERIC(5,3),
+    fmeasure NUMERIC(5,3)
 );
