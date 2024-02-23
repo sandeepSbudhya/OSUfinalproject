@@ -20,25 +20,25 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
-  db:
-    image: postgres
-    restart: unless-stopped
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    # or set shared memory limit when deploy via swarm stack
-    volumes: 
-          - ./postgres-data:/var/lib/postgresql/data
-          # copy the sql script to create tables
-          - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: kafkamessages
-      POSTGRES_USER: postgresuser
-    ports:
-      - "5432:5432"
+  # db:
+  #   image: postgres
+  #   restart: unless-stopped
+  #   # set shared memory limit when using docker-compose
+  #   shm_size: 128mb
+  #   # or set shared memory limit when deploy via swarm stack
+  #   volumes: 
+  #         - ./postgres-data:/var/lib/postgresql/data
+  #         # copy the sql script to create tables
+  #         - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  #   environment:
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: kafkamessages
+  #     POSTGRES_USER: postgresuser
+  #   ports:
+  #     - "5432:5432"
   
-  adminer:
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - "5000:8080"
+  # adminer:
+  #   image: adminer
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5000:8080"

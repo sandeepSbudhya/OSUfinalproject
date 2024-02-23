@@ -2,8 +2,10 @@ package com.springbootkafka.producer.controllers;
 
 import com.springbootkafka.producer.services.ProducePerformanceMessage;
 import com.springbootkafka.producer.services.ProduceProgressMessage;
+import com.springbootkafka.producer.services.ProduceStopMessage;
 import com.springbootkafka.producer.types.PerformanceMessage;
 import com.springbootkafka.producer.types.ProgressMessage;
+import com.springbootkafka.producer.types.StopMessage;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,9 @@ public class ProduceMessageController {
 
     @Autowired
     private ProduceProgressMessage produceProgressMessage;
+
+    @Autowired
+    private ProduceStopMessage produceStopMessage;
 
     /**
      * 
@@ -55,6 +60,18 @@ public class ProduceMessageController {
             return ResponseEntity.ok("successfully sent message: "+progressMessage.toString());
         } catch (Exception e) {
             System.out.println("Could not send message: "+progressMessage.toString());
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/stop")
+    public ResponseEntity<String> sendStopMessage(@RequestBody StopMessage stopMessage) {
+        try{
+            produceStopMessage.sendStopToPerformanceMessageTopic(stopMessage);
+            return ResponseEntity.ok("successfully sent message: "+stopMessage.toString());
+        } catch (Exception e) {
+            System.out.println("Could not send message: "+stopMessage.toString());
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
