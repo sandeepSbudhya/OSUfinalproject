@@ -21,7 +21,7 @@ public class ProduceStopMessage{
      */
     public void sendStopToPerformanceMessageTopic(StopMessage stopMessage) {
     
-        CompletableFuture<SendResult<String, Object>> futureMessage = template.send("performance-messages", stopMessage);
+        CompletableFuture<SendResult<String, Object>> futureMessage = template.send("stop-messages", stopMessage);
         futureMessage.whenComplete((result, exception)->{
             if(exception == null) {
                 System.out.println("sent performance message successfully");
