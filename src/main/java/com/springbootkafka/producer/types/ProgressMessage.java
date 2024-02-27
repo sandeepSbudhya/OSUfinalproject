@@ -5,15 +5,15 @@ package com.springbootkafka.producer.types;
  */
 public class ProgressMessage {
     private long epochsCompleted, totalEpochs;
-    private int days, hours, minutes, userId;
+    private int days, hours, minutes, jobId;
     
-    public ProgressMessage(long epochsCompleted, long totalEpochs, int days, int hours, int minutes, int userId) {
+    public ProgressMessage(long epochsCompleted, long totalEpochs, int days, int hours, int minutes, int jobId) {
         this.epochsCompleted = epochsCompleted;
         this.totalEpochs = totalEpochs;
         this.days = days;
         this.hours = hours;
         this.minutes = minutes;
-        this.userId = userId;
+        this.jobId = jobId;
     }
 
     public void setEpochsCompleted(long epochsCompleted) {
@@ -36,8 +36,8 @@ public class ProgressMessage {
         this.minutes = minutes;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setjobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public long getEpochsCompleted() {
@@ -60,7 +60,7 @@ public class ProgressMessage {
         return this.minutes;
     }
 
-    public int getUserId() {
-        return this.userId;
+    public int getjobId() {
+        return this.jobId;
     }
 }
