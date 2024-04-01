@@ -45,7 +45,7 @@ public class ProgressMessage {
         return this.epochsCompleted;
     }
 
-    public long getTotlaEpochs() {
+    public long getTotalEpochs() {
         return this.totalEpochs;
     }
 
