@@ -5,9 +5,10 @@ package com.springbootkafka.producer.types;
  */
 public class ProgressMessage {
     private long epochsCompleted, totalEpochs;
-    private int days, hours, minutes, jobId;
+    private int days, hours, minutes;
+    private String jobId;
     
-    public ProgressMessage(long epochsCompleted, long totalEpochs, int days, int hours, int minutes, int jobId) {
+    public ProgressMessage(long epochsCompleted, long totalEpochs, int days, int hours, int minutes, String jobId) {
         this.epochsCompleted = epochsCompleted;
         this.totalEpochs = totalEpochs;
         this.days = days;
@@ -36,7 +37,7 @@ public class ProgressMessage {
         this.minutes = minutes;
     }
 
-    public void setjobId(int jobId) {
+    public void setjobId(String jobId) {
         this.jobId = jobId;
     }
 
@@ -60,7 +61,7 @@ public class ProgressMessage {
         return this.minutes;
     }
 
-    public int getjobId() {
+    public String getjobId() {
         return this.jobId;
     }
 }

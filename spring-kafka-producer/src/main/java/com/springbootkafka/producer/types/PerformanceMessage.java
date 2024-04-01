@@ -5,9 +5,9 @@ package com.springbootkafka.producer.types;
  */
 public class PerformanceMessage {
     private float accuracy, fmeasure, precision, recall;
-    private int jobId;
+    private String jobId;
     
-    public PerformanceMessage(float accuracy, float fmeasure, float precision, float recall, int jobId) {
+    public PerformanceMessage(float accuracy, float fmeasure, float precision, float recall, String jobId) {
         this.accuracy = accuracy;
         this.fmeasure = fmeasure;
         this.precision = precision;
@@ -31,7 +31,7 @@ public class PerformanceMessage {
         this.recall = recall;
     }
 
-    public void setjobId(int jobId) {
+    public void setjobId(String jobId) {
         this.jobId = jobId;
     }
 
@@ -51,7 +51,7 @@ public class PerformanceMessage {
         return this.recall;
     }
 
-    public int getjobId() {
+    public String getjobId() {
         return this.jobId;
     }
 }
