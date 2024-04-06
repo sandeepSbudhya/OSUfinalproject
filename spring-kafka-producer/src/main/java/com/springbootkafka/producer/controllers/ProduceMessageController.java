@@ -2,10 +2,10 @@ package com.springbootkafka.producer.controllers;
 
 import com.springbootkafka.producer.services.ProducePerformanceMessage;
 import com.springbootkafka.producer.services.ProduceProgressMessage;
-import com.springbootkafka.producer.services.ProduceStopMessage;
+import com.springbootkafka.producer.services.ProduceUtilizationMessage;
 import com.springbootkafka.producer.types.PerformanceMessage;
 import com.springbootkafka.producer.types.ProgressMessage;
-import com.springbootkafka.producer.types.StopMessage;
+import com.springbootkafka.producer.types.UtilizationMessage;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +29,8 @@ public class ProduceMessageController {
     private ProduceProgressMessage produceProgressMessage;
 
     @Autowired
-    private ProduceStopMessage produceStopMessage;
+    private ProduceUtilizationMessage produceUtilizationMessage;
+
 
     /**
      * 
@@ -65,13 +66,18 @@ public class ProduceMessageController {
         }
     }
 
-    @PostMapping("/stop")
-    public ResponseEntity<String> sendStopMessage(@RequestBody StopMessage stopMessage) {
+        /**
+     * 
+     * @param progressMessage convert JSON body to java object
+     * @return
+     */
+    @PostMapping("/cpu-mem-utilization")
+    public ResponseEntity<String> sendUtilizationMessage(@RequestBody UtilizationMessage UtilizationMessage) {
         try{
-            produceStopMessage.sendStopToPerformanceMessageTopic(stopMessage);
-            return ResponseEntity.ok("successfully sent message: "+stopMessage.toString());
+            produceUtilizationMessage.sendToUtilizationMessagesTopic(UtilizationMessage);
+            return ResponseEntity.ok("successfully sent message: "+UtilizationMessage.toString());
         } catch (Exception e) {
-            System.out.println("Could not send message: "+stopMessage.toString());
+            System.out.println("Could not send message: "+UtilizationMessage.toString());
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
