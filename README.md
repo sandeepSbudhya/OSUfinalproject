@@ -1,3 +1,4 @@
+
 # Intelligence Plane Spring Kafka message system
 
 Spring Boot + Kafka project to demonstrate intelligence plane communication.
@@ -56,18 +57,5 @@ http://localhost:8080/create-topic<br/>
  7. Send a **POST** message to  this endpoint  with json body:<br/>{<br/>&emsp;"topic":"performance-messages"<br/>}<br/>To create the performance message topic and with json body:
 {<br/>&emsp;"topic":"progress-messages"<br/>}<br/>To create the progress message topic.<br/>
 
-8. Send **POST** message to the following urls with json bodies similar to the sample to push a message into the respective topics in kafka.<br/>http://localhost:8080/producemessage/performance<br/>{
-&emsp;"accuracy"  :  0.579,<br/>
-&emsp;"fmeasure"  :  0.67,<br/>
-&emsp;"precision"  :  0.55,<br/>
-&emsp;"recall"  :  0.67,<br/>
-&emsp;"jobId"  :  "1"<br/>
-}
-http://localhost:8080/producemessage/progress<br/>{
-&emsp;"epochsCompleted"  :  1,<br/>
-&emsp;"totalEpochs"  :  2,<br/>
-&emsp;"days"  :  1,<br/>
-&emsp;"hours"  :  2,<br/>
-&emsp;"minutes"  :  3,<br/>
-&emsp;"jobId"  :  1<br/>
-}<br/>
+8. Send **POST** message to the following urls with json bodies similar to the sample to push a message into the respective topics in kafka.<br/>http://localhost:8080/producemessage/performance<br/>{<br/>&emsp;"accuracy"  :  0.579,<br/>&emsp;"fmeasure"  :  0.67,<br/>&emsp;"precision"  :  0.55,<br/>&emsp;"recall"  :  0.67,<br/>&emsp;"jobId"  :  "1"<br/>}
+http://localhost:8080/producemessage/progress<br/>{<br/>&emsp;"epochsCompleted"  :  1,<br/>&emsp;"totalEpochs"  :  2,<br/>&emsp;"days"  :  1,<br/>&emsp;"hours"  :  2,<br/>&emsp;"minutes"  :  3,<br/>&emsp;"jobId"  :  1<br/>}<br/>
